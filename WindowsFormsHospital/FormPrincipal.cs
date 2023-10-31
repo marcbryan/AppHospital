@@ -30,7 +30,6 @@ namespace WindowsFormsHospital
                 lblListaMedicos.Text = "No hay ningún médico";
                 lvMedicos.Visible = false;
                 btnAddPaciente.Enabled = false;
-                menuToolStripMenuItem.Enabled = false;
             }
 
             int numPacientes = hospital.ContarPacientes();
@@ -57,7 +56,6 @@ namespace WindowsFormsHospital
                 lvMedicos.Items.Add(formAddMedico.NuevoMedico.GetNombreCompleto());
                 lvMedicos.Visible = true;
                 btnAddPaciente.Enabled = true;
-                menuToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -117,7 +115,7 @@ namespace WindowsFormsHospital
             {
                 this.Visible = false;
                 
-                formPacientesMedico = new FormPacientesMedico(pacientesMedico);
+                formPacientesMedico = new FormPacientesMedico(pacientesMedico, lvMedicos.Items[index].Text);
                 formPacientesMedico.ShowDialog();
 
                 this.Visible = true;

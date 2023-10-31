@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddMedico));
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblApellidos = new System.Windows.Forms.Label();
@@ -94,7 +95,7 @@
             // 
             // btnAddMedico
             // 
-            this.btnAddMedico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMedico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMedico.Location = new System.Drawing.Point(317, 308);
             this.btnAddMedico.Name = "btnAddMedico";
             this.btnAddMedico.Size = new System.Drawing.Size(154, 37);
@@ -107,6 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnAddMedico);
             this.Controls.Add(this.lblEdad);
@@ -115,6 +117,7 @@
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAddMedico";
             this.Text = "Añadir un médico";
             ((System.ComponentModel.ISupportInitialize)(this.nmrEdad)).EndInit();

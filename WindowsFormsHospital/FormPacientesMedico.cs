@@ -13,12 +13,20 @@ namespace WindowsFormsHospital
 {
     public partial class FormPacientesMedico : Form
     {
-        public FormPacientesMedico(List<Paciente> pacientesMedico)
+        public FormPacientesMedico(List<Paciente> pacientesMedico, string nombreMedico)
         {
             InitializeComponent();
 
+            lblListaPacientes.Text += nombreMedico;
+
             foreach (Paciente paciente in pacientesMedico)
                 lvPacientesMedico.Items.Add(paciente.ToString());
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }
