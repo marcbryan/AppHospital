@@ -13,20 +13,42 @@ namespace WindowsFormsHospital
 {
     public partial class FormPacientesMedico : Form
     {
-        public FormPacientesMedico(List<Paciente> pacientesMedico, string nombreMedico)
+        private List<Paciente> pacientesMedico;
+        private Medico medico;
+
+        public FormPacientesMedico(List<Paciente> pacientesMedico, Medico medico)
         {
             InitializeComponent();
 
-            lblListaPacientes.Text += nombreMedico;
+            this.pacientesMedico = pacientesMedico;
+            this.medico = medico;
+
+            lblListaPacientes.Text += medico.GetNombreCompleto();
 
             foreach (Paciente paciente in pacientesMedico)
-                lvPacientesMedico.Items.Add(paciente.ToString());
+                lbPacientesMedico.Items.Add(paciente.ToString());
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnDesasignarPaciente_Click(object sender, EventArgs e)
+        {
+            bool isSelected = lbPacientesMedico.SelectedIndices.Count > 0 ? true : false;
+            if (isSelected)
+            {
+                int index = lbPacientesMedico.SelectedIndex;
+                // Eliminamos el medico del paciente
+                Paciente pacienteSeleccionado = medico.PacientesMedico[index];
+                pacienteSeleccionado.Medico = null;
+                
+                // Eliminamos el paciente de la lista de pacientes del médico
+                medico.DesasignarPaciente(pacienteSeleccionado);
+                lbPacientesMedico.Items.RemoveAt(index);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace WindowsFormsHospital
             if (numMedicos == 0)
             {
                 lblListaMedicos.Text = "No hay ningún médico";
-                lvMedicos.Visible = false;
+                lbMedicos.Visible = false;
                 btnAddPaciente.Enabled = false;
             }
 
@@ -36,7 +36,7 @@ namespace WindowsFormsHospital
             if (numPacientes == 0)
             {
                 lblListaPacientes.Text = "No hay ningún paciente";
-                lvPacientes.Visible = false;
+                lbPacientes.Visible = false;
             }
         }
 
@@ -52,11 +52,27 @@ namespace WindowsFormsHospital
             if (formAddMedico.DialogResult == DialogResult.OK)
             {
                 lblListaMedicos.Text = "Lista médicos";
+                
                 hospital.AddMedico(formAddMedico.NuevoMedico);
-                lvMedicos.Items.Add(formAddMedico.NuevoMedico.GetNombreCompleto());
-                lvMedicos.Visible = true;
+                lbMedicos.Items.Add(formAddMedico.NuevoMedico.GetNombreCompleto());
+                
+                lbMedicos.Visible = true;
                 btnAddPaciente.Enabled = true;
+                btnEliminarMedico.Enabled = true;
             }
+        }
+
+        private void btnEliminarMedico_Click(object sender, EventArgs e)
+        {
+            bool isSelected = lbMedicos.SelectedIndices.Count > 0 ? true : false;
+            if (isSelected)
+            {
+                int index = lbMedicos.SelectedIndices[0];
+                hospital.EliminarMedico(index);
+                lbMedicos.Items.RemoveAt(index);
+            }
+            else
+                MessageBox.Show("No has seleccionado a un médico");
         }
 
         private void btnAddPaciente_Click(object sender, EventArgs e)
@@ -71,57 +87,82 @@ namespace WindowsFormsHospital
             if (formAddPaciente.DialogResult == DialogResult.OK)
             {
                 lblListaPacientes.Text = "Lista pacientes";
-                hospital.AddPaciente(formAddPaciente.NuevoPaciente);
-                lvPacientes.Items.Add(formAddPaciente.NuevoPaciente.GetNombreCompleto());
-                lvPacientes.Visible = true;
-            }
-        }
-
-        private void lvPacientes_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                ListViewItem focusedItem = lvPacientes.FocusedItem;
-                if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
-                    contextMenuPacientes.Show(Cursor.Position);
-            }
-        }
-
-        private void eliminarPacienteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int index = lvPacientes.SelectedItems[0].Index;
-            hospital.EliminarPaciente(index);
-            lvPacientes.Items.RemoveAt(index);
-        }
-
-        private void lvMedicos_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                ListViewItem focusedItem = lvMedicos.FocusedItem;
-                if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
-                    contextMenuMedicos.Show(Cursor.Position);
-            }
-        }
-
-        private void mostrarPacientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO: Mostrar formulario con sus pacientes
-            int index = lvMedicos.SelectedItems[0].Index;
-            List<Paciente> pacientesMedico = hospital.ObtenerPacientesMedico(index);
-
-            FormPacientesMedico formPacientesMedico;
-            if (pacientesMedico.Count > 0)
-            {
-                this.Visible = false;
                 
-                formPacientesMedico = new FormPacientesMedico(pacientesMedico, lvMedicos.Items[index].Text);
-                formPacientesMedico.ShowDialog();
+                hospital.AddPaciente(formAddPaciente.NuevoPaciente);
+                lbPacientes.Items.Add(formAddPaciente.NuevoPaciente.GetNombreCompleto());
+                
+                lbPacientes.Visible = true;
+                btnEliminarPaciente.Enabled = true;
+            }
+        }
+
+        private void btnEliminarPaciente_Click(object sender, EventArgs e)
+        {
+            bool isSelected = lbPacientes.SelectedIndices.Count > 0 ? true : false;
+            if (isSelected)
+            {
+                int index = lbPacientes.SelectedIndex;
+                hospital.EliminarPaciente(index);
+                lbPacientes.Items.RemoveAt(index);
+            }
+            else
+                MessageBox.Show("No has seleccionado a un paciente");
+        }
+
+        private void lbMedicos_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbMedicos.SelectedIndex;
+            if (index != -1)
+            {
+                List<Medico> medicos = hospital.GetMedicos();
+
+                this.Visible = false;
+
+                FormEditarMedico formEditarMedico = new FormEditarMedico(medicos[index]);
+                formEditarMedico.ShowDialog();
+
+                if (formEditarMedico.DialogResult == DialogResult.OK)
+                    lbMedicos.Items[index] = medicos[index].GetNombreCompleto();
 
                 this.Visible = true;
             }
-            else
-                MessageBox.Show("Este médico no tiene pacientes!");
+        }
+
+        private void lbPacientes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbPacientes.SelectedIndex;
+            if (index != -1)
+            {
+                Paciente pacienteSeleccionado = hospital.GetPacientes()[index];
+
+                List<Medico> medicos = hospital.GetMedicos();
+
+                this.Visible = false;
+
+                FormEditarPaciente formCambiarMedicoPaciente = new FormEditarPaciente(medicos, pacienteSeleccionado);
+                formCambiarMedicoPaciente.ShowDialog();
+
+                this.Visible = true;
+
+                if (formCambiarMedicoPaciente.DialogResult == DialogResult.OK)
+                {
+                    Medico medicoAnterior = pacienteSeleccionado.Medico;
+                    Medico nuevoMedico = formCambiarMedicoPaciente.NuevoMedico;
+
+                    if (medicoAnterior != nuevoMedico)
+                    {
+                        if (medicoAnterior != null)
+                            medicoAnterior.DesasignarPaciente(pacienteSeleccionado);
+
+                        if (nuevoMedico != null)
+                            nuevoMedico.AddPaciente(pacienteSeleccionado);
+                        
+                        pacienteSeleccionado.Medico = nuevoMedico;
+                    }
+
+                    lbPacientes.Items[index] = pacienteSeleccionado.GetNombreCompleto();
+                }
+            }            
         }
     }
 }

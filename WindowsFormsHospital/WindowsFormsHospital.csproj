@@ -52,6 +52,18 @@
     <Compile Include="FormAddPaciente.Designer.cs">
       <DependentUpon>FormAddPaciente.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditarMedico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarMedico.Designer.cs">
+      <DependentUpon>FormEditarMedico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditarPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarPaciente.Designer.cs">
+      <DependentUpon>FormEditarPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPacientesMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +93,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddPaciente.resx">
       <DependentUpon>FormAddPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarMedico.resx">
+      <DependentUpon>FormEditarMedico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarPaciente.resx">
+      <DependentUpon>FormEditarPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPacientesMedico.resx">
       <DependentUpon>FormPacientesMedico.cs</DependentUpon>

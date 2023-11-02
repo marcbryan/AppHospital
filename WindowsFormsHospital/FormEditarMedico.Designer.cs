@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsHospital
 {
-    partial class FormAddPaciente
+    partial class FormEditarMedico
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddPaciente));
-            this.btnAddPaciente = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.lblEdad = new System.Windows.Forms.Label();
             this.nmrEdad = new System.Windows.Forms.NumericUpDown();
             this.txtApellidos = new System.Windows.Forms.TextBox();
             this.lblApellidos = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.lblMedico = new System.Windows.Forms.Label();
-            this.cbMedicos = new System.Windows.Forms.ComboBox();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnListaPacientes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nmrEdad)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnAddPaciente
+            // btnGuardar
             // 
-            this.btnAddPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPaciente.Location = new System.Drawing.Point(332, 320);
-            this.btnAddPaciente.Name = "btnAddPaciente";
-            this.btnAddPaciente.Size = new System.Drawing.Size(169, 37);
-            this.btnAddPaciente.TabIndex = 13;
-            this.btnAddPaciente.Text = "Añadir paciente";
-            this.btnAddPaciente.UseVisualStyleBackColor = true;
-            this.btnAddPaciente.Click += new System.EventHandler(this.btnAddPaciente_Click);
+            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Location = new System.Drawing.Point(419, 287);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(154, 37);
+            this.btnGuardar.TabIndex = 13;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // lblEdad
             // 
@@ -106,44 +105,45 @@
             this.lblNombre.TabIndex = 7;
             this.lblNombre.Text = "Nombre:";
             // 
-            // lblMedico
+            // btnVolver
             // 
-            this.lblMedico.AutoSize = true;
-            this.lblMedico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMedico.Location = new System.Drawing.Point(228, 260);
-            this.lblMedico.Name = "lblMedico";
-            this.lblMedico.Size = new System.Drawing.Size(82, 25);
-            this.lblMedico.TabIndex = 15;
-            this.lblMedico.Text = "Médico:";
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(233, 287);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(154, 37);
+            this.btnVolver.TabIndex = 14;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // cbMedicos
+            // btnListaPacientes
             // 
-            this.cbMedicos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMedicos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMedicos.FormattingEnabled = true;
-            this.cbMedicos.Location = new System.Drawing.Point(332, 260);
-            this.cbMedicos.Name = "cbMedicos";
-            this.cbMedicos.Size = new System.Drawing.Size(241, 33);
-            this.cbMedicos.TabIndex = 16;
+            this.btnListaPacientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListaPacientes.Location = new System.Drawing.Point(233, 330);
+            this.btnListaPacientes.Name = "btnListaPacientes";
+            this.btnListaPacientes.Size = new System.Drawing.Size(340, 37);
+            this.btnListaPacientes.TabIndex = 15;
+            this.btnListaPacientes.Text = "Ver lista de pacientes";
+            this.btnListaPacientes.UseVisualStyleBackColor = true;
+            this.btnListaPacientes.Click += new System.EventHandler(this.btnListaPacientes_Click);
             // 
-            // FormAddPaciente
+            // FormEditarMedico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cbMedicos);
-            this.Controls.Add(this.lblMedico);
-            this.Controls.Add(this.btnAddPaciente);
+            this.Controls.Add(this.btnListaPacientes);
+            this.Controls.Add(this.btnVolver);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblEdad);
             this.Controls.Add(this.nmrEdad);
             this.Controls.Add(this.txtApellidos);
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormAddPaciente";
-            this.Text = "Añadir paciente";
+            this.Name = "FormEditarMedico";
+            this.Text = "Editar médico";
             ((System.ComponentModel.ISupportInitialize)(this.nmrEdad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,14 +152,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnAddPaciente;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblEdad;
         private System.Windows.Forms.NumericUpDown nmrEdad;
         private System.Windows.Forms.TextBox txtApellidos;
         private System.Windows.Forms.Label lblApellidos;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblMedico;
-        private System.Windows.Forms.ComboBox cbMedicos;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnListaPacientes;
     }
 }

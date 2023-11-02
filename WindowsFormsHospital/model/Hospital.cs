@@ -50,25 +50,6 @@ namespace Model
             paciente.Medico.AddPaciente(paciente);
         }
 
-        private Medico AsignarMedico()
-        {
-            Console.WriteLine("Elige a un médico para que le atienda");
-
-            List<Persona> listaMedicos = ObtenerListaDe(eTipoPersona.medico);
-
-            int numMedico = -1;
-            bool esValido = false;
-            while (!esValido)
-            {
-                numMedico = PreguntarPorValorNumerico("Elige un número:");
-
-                if ((numMedico - 1) < listaMedicos.Count)
-                    esValido = true;
-            }
-
-            return (Medico) listaMedicos[numMedico - 1];
-        }
-
         private List<Persona> ObtenerListaDe(eTipoPersona tipo)
         {
             List<Persona> listaPers = new List<Persona>();
@@ -99,6 +80,11 @@ namespace Model
             return personas.OfType<Medico>().ToList();
         }
 
+        public List<Paciente> GetPacientes()
+        {
+            return personas.OfType<Paciente>().ToList();
+        }
+
         public List<Paciente> ObtenerPacientesMedico(int index)
         {
             List<Persona> medicos = ObtenerListaDe(eTipoPersona.medico);
@@ -108,17 +94,30 @@ namespace Model
 
         public void EliminarPaciente(int index)
         {
-            Console.WriteLine("Selecciona el paciente que quieras eliminar");
-
             List<Persona> listaPacientes = ObtenerListaDe(eTipoPersona.paciente);
 
             Paciente paciente = (Paciente) listaPacientes[index];
 
             // Lo eliminamos de la lista de pacientes del médico
             Medico suMedico = paciente.Medico;
-            suMedico.DesasignarPaciente(paciente);
+            if (suMedico != null)
+                suMedico.DesasignarPaciente(paciente);
+
             // Y lo eliminamos de la lista de personas que están en el hospital
             personas.Remove(paciente);
+        }
+
+        public void EliminarMedico(int index)
+        {
+            List<Persona> listaMedicos = ObtenerListaDe(eTipoPersona.medico);
+
+            Medico medico = (Medico) listaMedicos[index];
+
+            // Eliminamos el médico de cada paciente (de los pacientes del médico que vamos a eliminar)
+            foreach (Paciente paciente in medico.PacientesMedico)
+                paciente.Medico = null;
+
+            personas.Remove(medico);
         }
 
         public void MostrarPersonasHospital()

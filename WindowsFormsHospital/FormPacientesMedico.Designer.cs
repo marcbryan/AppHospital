@@ -28,28 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lvPacientesMedico = new System.Windows.Forms.ListView();
             this.btnVolver = new System.Windows.Forms.Button();
             this.lblListaPacientes = new System.Windows.Forms.Label();
+            this.btnDesasignarPaciente = new System.Windows.Forms.Button();
+            this.lbPacientesMedico = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // lvPacientesMedico
-            // 
-            this.lvPacientesMedico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvPacientesMedico.HideSelection = false;
-            this.lvPacientesMedico.Location = new System.Drawing.Point(175, 90);
-            this.lvPacientesMedico.Name = "lvPacientesMedico";
-            this.lvPacientesMedico.Size = new System.Drawing.Size(430, 288);
-            this.lvPacientesMedico.TabIndex = 0;
-            this.lvPacientesMedico.UseCompatibleStateImageBehavior = false;
-            this.lvPacientesMedico.View = System.Windows.Forms.View.List;
             // 
             // btnVolver
             // 
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.Location = new System.Drawing.Point(13, 13);
+            this.btnVolver.Location = new System.Drawing.Point(217, 394);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(79, 29);
+            this.btnVolver.Size = new System.Drawing.Size(151, 31);
             this.btnVolver.TabIndex = 1;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -65,26 +55,48 @@
             this.lblListaPacientes.TabIndex = 2;
             this.lblListaPacientes.Text = "Lista pacientes de ";
             // 
+            // btnDesasignarPaciente
+            // 
+            this.btnDesasignarPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDesasignarPaciente.Location = new System.Drawing.Point(390, 394);
+            this.btnDesasignarPaciente.Name = "btnDesasignarPaciente";
+            this.btnDesasignarPaciente.Size = new System.Drawing.Size(151, 31);
+            this.btnDesasignarPaciente.TabIndex = 3;
+            this.btnDesasignarPaciente.Text = "Quitar paciente";
+            this.btnDesasignarPaciente.UseVisualStyleBackColor = true;
+            this.btnDesasignarPaciente.Click += new System.EventHandler(this.btnDesasignarPaciente_Click);
+            // 
+            // lbPacientesMedico
+            // 
+            this.lbPacientesMedico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPacientesMedico.FormattingEnabled = true;
+            this.lbPacientesMedico.ItemHeight = 20;
+            this.lbPacientesMedico.Location = new System.Drawing.Point(175, 90);
+            this.lbPacientesMedico.Name = "lbPacientesMedico";
+            this.lbPacientesMedico.Size = new System.Drawing.Size(430, 284);
+            this.lbPacientesMedico.TabIndex = 4;
+            // 
             // FormPacientesMedico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbPacientesMedico);
+            this.Controls.Add(this.btnDesasignarPaciente);
             this.Controls.Add(this.lblListaPacientes);
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.lvPacientesMedico);
             this.Name = "FormPacientesMedico";
-            this.Text = "FormPacientesMedico";
+            this.Text = "Lista pacientes";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView lvPacientesMedico;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label lblListaPacientes;
+        private System.Windows.Forms.Button btnDesasignarPaciente;
+        private System.Windows.Forms.ListBox lbPacientesMedico;
     }
 }
