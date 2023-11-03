@@ -42,8 +42,13 @@ namespace WindowsFormsHospital
 
         private void btnAddMedico_Click(object sender, EventArgs e)
         {
+            AddMedico();
+        }
+
+        private void AddMedico()
+        {
             this.Visible = false;
-            
+
             FormAddMedico formAddMedico = new FormAddMedico();
             formAddMedico.ShowDialog();
 
@@ -52,10 +57,10 @@ namespace WindowsFormsHospital
             if (formAddMedico.DialogResult == DialogResult.OK)
             {
                 lblListaMedicos.Text = "Lista médicos";
-                
+
                 hospital.AddMedico(formAddMedico.NuevoMedico);
                 lbMedicos.Items.Add(formAddMedico.NuevoMedico.GetNombreCompleto());
-                
+
                 lbMedicos.Visible = true;
                 btnAddPaciente.Enabled = true;
                 btnEliminarMedico.Enabled = true;
@@ -63,6 +68,11 @@ namespace WindowsFormsHospital
         }
 
         private void btnEliminarMedico_Click(object sender, EventArgs e)
+        {
+            EliminarMedico();
+        }
+
+        private void EliminarMedico()
         {
             bool isSelected = lbMedicos.SelectedIndices.Count > 0 ? true : false;
             if (isSelected)
@@ -77,6 +87,11 @@ namespace WindowsFormsHospital
 
         private void btnAddPaciente_Click(object sender, EventArgs e)
         {
+            AddPaciente();
+        }
+
+        private void AddPaciente()
+        {
             this.Visible = false;
 
             FormAddPaciente formAddPaciente = new FormAddPaciente(hospital.GetMedicos());
@@ -87,16 +102,21 @@ namespace WindowsFormsHospital
             if (formAddPaciente.DialogResult == DialogResult.OK)
             {
                 lblListaPacientes.Text = "Lista pacientes";
-                
+
                 hospital.AddPaciente(formAddPaciente.NuevoPaciente);
                 lbPacientes.Items.Add(formAddPaciente.NuevoPaciente.GetNombreCompleto());
-                
+
                 lbPacientes.Visible = true;
                 btnEliminarPaciente.Enabled = true;
             }
         }
 
         private void btnEliminarPaciente_Click(object sender, EventArgs e)
+        {
+            EliminarPaciente();
+        }
+
+        private void EliminarPaciente()
         {
             bool isSelected = lbPacientes.SelectedIndices.Count > 0 ? true : false;
             if (isSelected)
@@ -110,6 +130,11 @@ namespace WindowsFormsHospital
         }
 
         private void lbMedicos_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MostrarFormEditarMedico();
+        }
+
+        private void MostrarFormEditarMedico()
         {
             int index = lbMedicos.SelectedIndex;
             if (index != -1)
@@ -129,6 +154,11 @@ namespace WindowsFormsHospital
         }
 
         private void lbPacientes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MostrarFormEditarPaciente();                
+        }
+
+        private void MostrarFormEditarPaciente()
         {
             int index = lbPacientes.SelectedIndex;
             if (index != -1)
@@ -156,13 +186,13 @@ namespace WindowsFormsHospital
 
                         if (nuevoMedico != null)
                             nuevoMedico.AddPaciente(pacienteSeleccionado);
-                        
+
                         pacienteSeleccionado.Medico = nuevoMedico;
                     }
 
                     lbPacientes.Items[index] = pacienteSeleccionado.GetNombreCompleto();
                 }
-            }            
+            }
         }
     }
 }

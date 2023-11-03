@@ -26,6 +26,11 @@ namespace WindowsFormsHospital
             this.medicos = medicos;
             this.pacienteSeleccionado = pacienteSeleccionado;
 
+            AsignarDatosPaciente();
+        }
+
+        private void AsignarDatosPaciente()
+        {
             txtNombre.Text = pacienteSeleccionado.Nombre;
             txtApellidos.Text = pacienteSeleccionado.Apellidos;
             nmrEdad.Value = pacienteSeleccionado.Edad;
@@ -46,7 +51,12 @@ namespace WindowsFormsHospital
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            GuardarCambios();
+            this.Close();
+        }
 
+        private void GuardarCambios()
+        {
             pacienteSeleccionado.Nombre = txtNombre.Text;
             pacienteSeleccionado.Apellidos = txtApellidos.Text;
             pacienteSeleccionado.Edad = (int) nmrEdad.Value;
@@ -56,8 +66,6 @@ namespace WindowsFormsHospital
                 nuevoMedico = medicos[indexNuevoMedico];
             else
                 nuevoMedico = null;
-
-            this.Close();
         }
     }
 }

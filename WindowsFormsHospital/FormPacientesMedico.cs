@@ -37,6 +37,11 @@ namespace WindowsFormsHospital
 
         private void btnDesasignarPaciente_Click(object sender, EventArgs e)
         {
+            DesasignarPaciente();
+        }
+
+        private void DesasignarPaciente()
+        {
             bool isSelected = lbPacientesMedico.SelectedIndices.Count > 0 ? true : false;
             if (isSelected)
             {
@@ -44,7 +49,7 @@ namespace WindowsFormsHospital
                 // Eliminamos el medico del paciente
                 Paciente pacienteSeleccionado = medico.PacientesMedico[index];
                 pacienteSeleccionado.Medico = null;
-                
+
                 // Eliminamos el paciente de la lista de pacientes del médico
                 medico.DesasignarPaciente(pacienteSeleccionado);
                 lbPacientesMedico.Items.RemoveAt(index);

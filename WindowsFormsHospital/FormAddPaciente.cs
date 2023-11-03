@@ -30,6 +30,11 @@ namespace WindowsFormsHospital
 
         private void btnAddPaciente_Click(object sender, EventArgs e)
         {
+            GuardarNuevoPaciente();
+        }
+
+        private void GuardarNuevoPaciente()
+        {
             string nombre = txtNombre.Text;
             string apellidos = txtApellidos.Text;
             int edad = (int) nmrEdad.Value;

@@ -34,8 +34,13 @@ namespace WindowsFormsHospital
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            GuardarCambios();
+        }
+
+        private void GuardarCambios()
+        {
             DialogResult = DialogResult.OK;
-            
+
             medico.Nombre = txtNombre.Text;
             medico.Apellidos = txtApellidos.Text;
             medico.Edad = (int) nmrEdad.Value;
@@ -43,9 +48,14 @@ namespace WindowsFormsHospital
 
         private void btnListaPacientes_Click(object sender, EventArgs e)
         {
+            MostrarFormListaPacientes();
+        }
+
+        private void MostrarFormListaPacientes()
+        {
             List<Paciente> pacientesMedico = medico.PacientesMedico;
             FormPacientesMedico formPacientesMedico;
-            
+
             if (pacientesMedico.Count > 0)
             {
                 this.Visible = false;
